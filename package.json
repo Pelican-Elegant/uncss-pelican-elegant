@@ -1,0 +1,16 @@
+{
+  "name": "strip-oncrashreboot",
+  "version": "1.0.0",
+  "description": "This project is intended to help in picking out relevant CSS parts from the original OnCrashReboot site",
+  "main": "index.js",
+  "dependencies": {
+    "http-server": "^0.9.0",
+    "uncss": "^0.14.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "http-server"
+  },
+  "author": "talha131",
+  "license": "ISC"
+}
