@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "http-server"
+    "server": "http-server",
+    "uncss": "uncss"
   },
   "author": "talha131",
   "license": "ISC"
