@@ -1,10 +1,20 @@
-# talha131.github.io
+# Purpose
 
-This is the HTML pages of my blog [onCrash="Reboot();"](http://oncrashreboot.com/).
+I plan to move theme [pelican-elegant](https://github.com/talha131/pelican-elegant/) from bootstrap to postcss. Unfortunately a lot of styles used in the theme are dependent on the specific version of the bootstrap I used.
 
-It is build and published with [Pelican](http://docs.getpelican.com/), and hosted by [GitHub Pages](http://pages.github.com/). Configuration files and articles are also in a git repository- [talha131/onCrashReboot](https://github.com/talha131/onCrashReboot#oncrash--reboot).
+I intend to use this project to extract relevant CSS rules and use it in my theme.
 
-# License
+For example, 
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">onCrash="Reboot();"</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://oncrashreboot.com" property="cc:attributionName" rel="cc:attributionURL">Talha Mansoor</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+1. I want to figure what CSS rules are in use to display top navigation menu as it is
+1. Remove all the code from `<body>` of index.html but leave top navigation menu code
+1. Run `npm run uncss -- index > menu.css`. 
+
+It will place all the rules used in index.html in menu.css file. Ass we have removed everything but the menu from the index.html, menu.css will only contain the rules that are used for navigation menu.
+
+# Commands
+
+1. `npm run server` to view website in browser
+1. `npm run uncss -- <filename>` to run uncss on a file
+
 
