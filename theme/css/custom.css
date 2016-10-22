@@ -1,0 +1,23 @@
+div .float-image {
+    margin:1.5em;
+    text-align:center;
+}
+div .float-image img {
+    width:100%;
+}
+div .float-image p {
+    margin:0;
+    font-size:0.6em;
+    color:gray;
+}
+div .float-image p a {
+    border:none;
+    color:gray;
+}
+div .float-right {
+    float:right;
+}
+div .float-left {
+    float:left;
+}
+

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Talha Mansoor" />
+        <meta name="copyright" content="Talha Mansoor" />
+
+        <meta name="description" content="How to programmatically open an App Page in Mac App Store (desktop application) using Cocoa
+" />
+<meta name="keywords" content="cocoa, mac-app-store, objective-c, iTunes, NSWorkspace, OSX Software Development, " />
+        <title>How to open Mac App Store&nbsp;Programmatically  · onCrash = 'reboot();'
+</title>
+        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://oncrashreboot.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://oncrashreboot.com/theme/css/solarizedlight.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://oncrashreboot.com/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="http://oncrashreboot.com/theme/images/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="http://oncrashreboot.com/theme/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://oncrashreboot.com/theme/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://oncrashreboot.com/theme/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://oncrashreboot.com/theme/images/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://oncrashreboot.com/theme/images/apple-touch-icon-144x144.png" />
+        <link rel="icon" href="http://oncrashreboot.com/theme/images/apple-touch-icon-144x144.png" />
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43454971-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://oncrashreboot.com/"><span class=site-name><span style="color:black;">onCrash</span> <span style="color:darkblue;">=</span> <span style="color:#AA1032;">'reboot();'</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://oncrashreboot.com">Home</a></li>
+                            <li ><a href="http://oncrashreboot.com/categories.html">Categories</a></li>
+                            <li ><a href="http://oncrashreboot.com/tags.html">Tags</a></li>
+                            <li ><a href="http://oncrashreboot.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://oncrashreboot.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page_header span10 offset2">
+    <h1><a href="http://oncrashreboot.com/how-to-open-mac-app-store-programmatically"> How to open Mac App Store&nbsp;Programmatically  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            <p>Mac App Store is accessed using <code>macappstore</code> <span class="caps">URL</span> scheme. Your <span class="caps">URL</span> should follow this&nbsp;pattern:</p>
+<div class="highlight"><pre>macappstore://itunes.apple.com/app/id<span class="o">[</span>APP_ID<span class="o">]</span>?mt<span class="o">=</span>12
+</pre></div>
+
+
+<p>Replace <code>[APP_ID]</code> with your app&#8217;s track&nbsp;id.</p>
+<h2 id="how-to-find-track-id-of-any-app">How to find Track <span class="caps">ID</span> of any app<a class="headerlink" href="#how-to-find-track-id-of-any-app" title="Permanent link">&para;</a></h2>
+<p>You can easily get track <span class="caps">ID</span> from <span class="caps">URL</span> of the application at App Store. For example, <span class="caps">URL</span> of Mac App Store page for Jump Desktop&nbsp;is </p>
+<div class="highlight"><pre>https://itunes.apple.com/ca/app/jump-desktop-remote-desktop/id524141863?mt<span class="o">=</span>12
+</pre></div>
+
+
+<p>Number between <code>id</code> and <code>?</code> is the required <span class="caps">ID</span> which in this case is <code>524141863</code>.</p>
+<p>Lets test it. Replace <code>[APP_ID]</code> with <code>524141863</code> in the <code>macappstore://</code> <span class="caps">URL</span> given above. Then open the <span class="caps">URL</span> from&nbsp;Terminal</p>
+<div class="highlight"><pre>open macappstore://itunes.apple.com/app/id524141863?mt<span class="o">=</span>12
+</pre></div>
+
+
+<p>This should open Mac App Store desktop application to Jump Desktop&nbsp;page.</p>
+<h2 id="how-to-open-mac-app-store-from-inside-your-application">How to open Mac App Store from inside your Application<a class="headerlink" href="#how-to-open-mac-app-store-from-inside-your-application" title="Permanent link">&para;</a></h2>
+<p>Now that we know the required <span class="caps">URL</span> scheme and track <span class="caps">ID</span>, opening iTunes page in Mac App Store is pretty simple. See the following code&nbsp;snippet.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">NSString</span> <span class="o">*</span><span class="n">track_id</span> <span class="o">=</span> <span class="s">@&quot;524141863&quot;</span><span class="p">;</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">app_url_str</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="n">stringWithFormat</span><span class="o">:</span>
+    <span class="s">@&quot;macappstore://itunes.apple.com/app/id%@?mt=12&quot;</span><span class="p">,</span>
+    <span class="n">track_id</span><span class="p">];</span>
+<span class="c1">// Create <span class="caps">NSURL</span> to pass it to NSWorkspace</span>
+<span class="n"><span class="caps">NSURL</span></span> <span class="o">*</span><span class="n">app_url</span> <span class="o">=</span> <span class="p">[</span><span class="n"><span class="caps">NSURL</span></span> <span class="n">URLWithString</span><span class="o">:</span><span class="n">app_url_str</span><span class="p">];</span>
+<span class="c1">// Open <span class="caps">URL</span></span>
+<span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="n">openURL</span><span class="o">:</span><span class="n">app_url</span><span class="p">];</span>
+</pre></div>
+</td></tr></table>
+
+<p>You just need to the pass <code>openURL:</code> message with correctly formed <span class="caps">URL</span> to <code>[NSWorkspace sharedWorkspace]</code> object.</p>
+<section>
+<p id="comment-message">So what do you think? Did I miss something? Is any part unclear? Leave your comments below. </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                    data-disqus-identifier="d50551b-how-to-open-mac-app-store-programmatically"
+                href="http://oncrashreboot.com/how-to-open-mac-app-store-programmatically#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'oncrashreboot';
+        var disqus_identifier = 'd50551b-how-to-open-mac-app-store-programmatically';
+    var disqus_url = 'http://oncrashreboot.com/how-to-open-mac-app-store-programmatically';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+            <aside>
+            <hr/>
+            <nav>
+            <ul class="articles_timeline">
+ 
+ 
+                <li class="next_article"><a href="http://oncrashreboot.com/elegant-best-pelican-theme-features" title="Next: Elegant - Why it is the best Pelican theme">Elegant <small>Why it is the best Pelican theme</small></a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+ 
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2013-08-23T14:20:00">Aug 23, 2013</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#OSX-Software-Development-ref">OSX Software Development</a> 
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article"> 
+                <li><a href="/tags.html#cocoa-ref">cocoa
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#iTunes-ref">iTunes
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#mac-app-store-ref">mac-app-store
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#NSWorkspace-ref">NSWorkspace
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#objective-c-ref">objective-c
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Stay in Touch</h4>
+<a href="http://twitter.com/talham_" title="My Twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+<a href="http://github.com/talha131" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+<a href="http://gittip.com/talha131" title="My GitTip Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-gittip sidebar-social-links"></i></a>
+<a href="mailto:talha131@gmail.com" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+<!-- Begin MailChimp Signup Form -->
+<div id="mc_embed_signup">
+<form action="http://oncrashreboot.us4.list-manage2.com/subscribe/post?u=e66b4cca51e40b859c64e8411&amp;id=d135692a12" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<h4>Get Monthly Updates</h4>
+<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your email..." required>
+<div class="clear"><input type="submit" value="Send me Free updates" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> onCrash="Reboot();"</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://oncrashreboot.com" property="cc:attributionName" rel="cc:attributionURL">Talha Mansoor</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'oncrashreboot';
+
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+        <script  language="javascript" type="text/javascript">
+            function uncollapse() {
+                var hash_str = window.location.hash;
+                if (window.location.hash.match(/^#comment-\d+$/))
+                {
+                    var hash_str = '#disqus_thread';
+                }
+                $(hash_str).collapse({
+                    toggle: true
+                    })
+            }
+        </script>
+
+        <script type="text/javascript" language="JavaScript">
+            uncollapse(); 
+        </script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9376577;
+var sc_invisible=1;
+var sc_security="8d87792a";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="http://c.statcounter.com/9376577/0/8d87792a/1/"
+alt="web analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+    </body>
+</html>
